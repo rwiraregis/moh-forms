@@ -1,0 +1,505 @@
+<htmlform>
+
+<style>
+body {
+	background-color: #ffffff;
+}
+
+.bodycontainer {
+	padding: 2px;
+	background-color: transparent;
+}
+
+.header {
+	font-style: italic;
+	font-family: Gill, Georgia, serif;
+	font-size: x-large;
+	font-weight: bold;
+	color: #02416e;
+	height: 40px;
+	width: 100%;
+	border: 2px solid #ccccff;
+	text-align: center;
+	background-color: #ebf2f7;
+	margin-bottom: 5px;
+}
+
+.container {
+	clear: both;
+	height: auto;
+	width: 100%;
+	padding: 2px;
+	background-color: transparent;
+}
+
+.leftsection {
+	clear: both;
+	float: left;
+	width: 50%;
+	margin-bottom: 5px;
+}
+
+.sectioninleft {
+	border-right: 2px solid #02416e;
+	background-color: #ebf2f7;
+	border-bottom: 2px solid #02416e;
+	border-left: 2px solid #02416e;
+	border-top: 2px solid #02416e;
+}
+
+.rightsection {
+	float: right;
+	width: 50%;
+	margin-bottom: 5px;
+}
+
+.sectioninright {
+	background-color: #ebf2f7;
+	border-left: none;
+	border-bottom: 2px solid #02416e;
+	border-right: 2px solid #02416e;
+	border-top: 2px solid #02416e;
+}
+
+.section {
+	margin-bottom: 5px;
+	clear: both;
+	background-color: #ebf2f7;
+	border: 2px solid #02416e;
+}
+
+.sectionheader {
+	font-style: italic;
+	font-family: Gill, Georgia, serif;
+	font-size: medium;
+	font-weight: bold;
+	height: auto;
+	width: inherit;
+	border: 2px solid #ccccff;
+	text-align: left;
+	padding: 2px;
+	background-color: #81afc1;
+}
+
+.sectionbody {
+	clear: both;
+	height: auto;
+	width: inherit;
+	background-color: transparent;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.separator {
+	clear: both;
+	font-style: normal;
+	font-family: Gill, Georgia, serif;
+	font-size: larger;
+	font-weight: bold;
+	color: #02416e;
+	height: 30px;
+	border: 2px solid #ccccff;
+	border-left: 2px solid #02416e;
+	border-bottom: none;
+	border-right: 2px solid #02416e;
+	border-top: 2px solid #02416e;
+	text-align: center;
+	background-color: #ebf2f7;
+}
+
+.footer {
+	clear: both;
+	height: 20px;
+	width: 100%;
+	border: 2px solid #ccccff;
+	text-align: center;
+	background-color: #fbfce3;
+}
+
+input[type="text"] {
+	font-style: italic;
+	font-family: Georgia;
+}
+
+input[type="submit"] {
+	font-style: italic;
+	font-family: Georgia;
+}
+</style>
+
+<script type="text/javascript">
+	var $j = jQuery.noConflict();
+
+	if (jQuery) {
+
+		// This where we concatenate History of the illness to the Past Medical
+
+		$j(document).ready(function() {
+
+			// Hide all DIVs until they are called!
+			$j("#div1").hide();
+			$j("#div2").hide();
+			$j("#div3").hide();
+			$j("#div0").hide();
+
+			$j("#close0").click(function() {
+				$j("#div0").hide();
+				$j("select[name=service]").val("0");
+			});
+			$j("#close1").click(function() {
+				$j("#div1").hide();
+				$j("select[name=service]").val("0");
+			});
+			$j("#close2").click(function() {
+				$j("#div2").hide();
+				$j("select[name=service]").val("0");
+			});
+			$j("#close3").click(function() {
+				$j("#div3").hide();
+				$j("select[name=service]").val("0");
+			});
+
+			var selected_value;
+
+			$j("select[name=service]").change(function() {
+				selected_value = $j("select[name=service]").val();
+
+				if (selected_value == "0") {
+					$j("#div0").hide();
+					$j("#div1").hide();
+					$j("#div2").hide();
+					$j("#div3").hide();
+				}
+				if (selected_value == "1") {
+					$j("#div1").show();
+					$j("#div2").hide();
+					$j("#div3").hide();
+					$j("#div0").hide();
+				}
+				if (selected_value == "2") {
+					$j("#div2").show();
+					$j("#div1").hide();
+					$j("#div3").hide();
+					$j("#div0").hide();
+				}
+				if (selected_value == "3") {
+					$j("#div3").show();
+					$j("#div2").hide();
+					$j("#div1").hide();
+					$j("#div0").hide();
+				}
+				if (selected_value == "4") {
+					$j("#div0").show();
+					$j("#div1").hide();
+					$j("#div2").hide();
+					$j("#div3").hide();
+				}
+			});
+
+		});
+
+	}
+</script> <!-- KPH - MEDICAL ACTS FORM -->
+
+<div class="header">KPH - Medical acts Form</div>
+<div class="bodycontainer">
+	<div class="separator">Medical Acts</div>
+	<div class="section">
+		<div class="sectionheader">Encounter information</div>
+		<div class="sectionbody">
+			<table class="baseline-aligned">
+				<tr>
+					<td>Date</td>
+					<td><encounterDate default="today" size="30" /></td>
+				</tr>
+				<tr>
+					<td>Patient names</td>
+					<td><b><u><lookup expression="patient.personName" /></u></b><br />
+						{<b>Id:</b>
+					<lookup expression="patient.patientIdentifier.identifier" />; <b>Sex:</b>
+					<lookup expression="patient.gender" />; <b>Age:</b>
+					<lookup expression="patient.age" />}</td>
+				</tr>
+				<tr>
+					<td>Location</td>
+					<td><encounterLocation default="1006" /></td>
+				</tr>
+				<tr>
+					<td>Provider</td>
+					<td><encounterProvider default="currentUser" /></td>
+				</tr>
+			</table>
+			<hr />
+			<table class="baseline-aligned">
+				<tr>
+					<td>Insurance</td>
+					<td><obs conceptId="6740" /></td>
+				</tr>
+				<tr>
+					<td>Phone number / Numero de telephone</td>
+					<td><obs conceptId="2614" size="40" /></td>
+				</tr>
+				<tr>
+					<td>Person to concact / Persone a contacter</td>
+					<td><obs conceptId="1327" size="60" /></td>
+				</tr>
+			</table>
+			<hr />
+		</div>
+	</div>
+
+	<!-- This is the section where we use JQuery -->
+
+	<div class="section">
+		<div class="sectionheader">List of Acts</div>
+		<div class="sectionbody">
+			<table class="baseline-aligned">
+				<tr>
+					<td>Choose a service</td>
+					<td><select id="serviceid" name="service">
+							<option value="0">--</option>
+							<option value="1">Echographie</option>
+							<option value="2">Stomatologie</option>
+							<option value="3">Soins infirmiers</option>
+							<option value="4">Chirurgie</option>
+					</select></td>
+				</tr>
+			</table>
+			
+			<div id="div0">
+				<fieldset>
+					<legend><b>Chirurgie</b></legend>
+					<br/>
+					interventions mineures<br/>
+					**********************<br/>
+					Incision d'abcès superficiel
+					Incision d'abcès profond
+					Ponction pleurale
+					Ponction d'ascite
+					Ponction lombaire
+					Ponction articulaire
+					Drainage thoracique
+					Ablation ongle incarné
+					Page 4 of 18
+					Dénudation veineuse
+					Tubage gastrique
+					Sondage vésicale
+					Suture simple
+					Suture profonde ou multiple
+					Ablation des fils
+					Circoncision
+					Exérèse de petites tumeures (lipomes, kystes)
+					Biopsie
+					Plâtre (Consommables exclus)
+					Corset platré (Consommables exclus)
+					Plâtre de correction hanche genou (Consommables exclus)
+					Plâtre de correction pieds (Consommables exclus)
+					Strapping (Bandage élastique)
+					Extraction corps étranger
+					Amputation d'un doigt
+					Décollement des petites lèvres
+					Curetage évacuateur
+					Curage digital
+					Insertion DIU
+					Ablation DIU
+					Insertion Norplan
+					Ablation Norplan
+					Hymenectomie
+					Cauterisation des condylomes
+					Injection Intra articulaire
+					Pansement compliqué
+					Seringage
+					<br/>Interventions intermédiares<br/>
+					***************************<br/>
+					Herniorraphie
+					Hémorroidéctomie
+					Greffe cutanée
+					Hydrocèle
+					Curetage osseux
+					Appendicectomie
+					Tortion testiculaire
+					Ligature isolée des trompes
+					Debridement
+					Cerclage du col utérin
+					Laparotomie pour kyste de l'ovaire
+					Marsupialisation
+					Cure d'éventration
+					Varicectomie
+					Fixateur externe
+					Réduction luxation
+					<br/>Interventions majeures<br/>
+					**********************<br/>
+					Traction de fractures
+					Ostéosynthèse
+					Ablation du matériel d'ostéosynthèse
+					Splénectomie
+					Thyroidectomie
+					Gastrectomie partielle
+					Gastro-entérotomie
+					Résection intestinale
+					Résection de la saphère interne
+					Colostomie, Occlusion intestinale, Volvulus, Peritonite
+					Hystérectomie
+					Césarienne seule
+					Césarienne et ligature des trompes
+					Grossesse extra-utérine
+					Amputation d'un membre inférieur
+					Amputation d'un membre supérieur
+					Ovariectomie
+					Myoméctomie
+					Salpingectomie
+					Sequestrectomie
+					Réparation de déchirure du col
+					Réparation de déchirure du périné
+					Hysterorrhaphie
+					Réparation de fisture vesico-vaginale
+					Réparation de fistule recto-vaginale
+					Réparation de fistule recto-vesico-vaginale
+					Cerclage prolapsus rectal
+					Mise à plat de la fistule anale
+					Laparotomie exploratrice
+					Amygdalectomie
+					Laminectomie
+					Trepanation
+					Nephrectomie
+					Hemicolectomie
+					Cholecystectomie
+					<br/>					
+				</fieldset>
+				
+				<div style="color: blue;" id="close0"><span><b>[Close me]</b></span></div>
+			</div>
+			
+			<div id="div1">
+				<fieldset>
+					<legend><b>Echographie</b></legend>
+					<obsgroup groupingConceptId="9909">
+						<table>
+							<tr>
+								<td><obs conceptId="9909" answerConceptId="7002"
+										style="checkbox" /></td>
+								<td><obs conceptId="9909" answerConceptId="7003"
+										style="checkbox" /></td>
+							</tr>
+						</table>
+					</obsgroup>	
+					<br/>					
+				</fieldset>
+
+				<div style="color: blue;" id="close1"><span><b>[Close me]</b></span></div>
+			</div>
+			<div id="div2">
+				<fieldset>
+					<legend><b>Stomatologie</b></legend>
+					<br/>
+					
+					<obsgroup groupingConceptId="9975">
+						<table>
+							<tr>
+								<td><obs conceptId="9975" answerConceptId="7004"
+										style="checkbox" /></td>
+								<td><obs conceptId="9975" answerConceptId="7005"
+										style="checkbox" /></td>
+								<td><obs conceptId="9975" answerConceptId="7006"
+										style="checkbox" /></td>
+							</tr>
+							<tr>
+								<td><obs conceptId="9975" answerConceptId="7007"
+										style="checkbox" /></td>
+								<td><obs conceptId="9975" answerConceptId="7008"
+										style="checkbox" /></td>
+								<td><obs conceptId="9975" answerConceptId="7009"
+										style="checkbox" /></td>
+							</tr>
+							<tr>
+								<td><obs conceptId="9975" answerConceptId="7010"
+										style="checkbox" /></td>
+								<td><obs conceptId="9975" answerConceptId="7011"
+										style="checkbox" /></td>
+								<td><obs conceptId="9975" answerConceptId="7012"
+										style="checkbox" /></td>
+							</tr>
+							<tr>
+								<td><obs conceptId="9975" answerConceptId="7013"
+										style="checkbox" /></td>
+								<td><obs conceptId="9975" answerConceptId="7014"
+										style="checkbox" /></td>
+								<td><obs conceptId="9975" answerConceptId="7015"
+										style="checkbox" /></td>
+							</tr>
+							<tr>
+								<td><obs conceptId="9975" answerConceptId="7016"
+										style="checkbox" /></td>
+								<td><obs conceptId="9975" answerConceptId="7017"
+										style="checkbox" /></td>
+								<td><obs conceptId="9975" answerConceptId="7018"
+										style="checkbox" /></td>
+							</tr>
+						</table>
+					</obsgroup>			
+					
+					<br/>
+				</fieldset>
+
+				<div style="color: blue;" id="close2"><span><b>[Close me]</b></span></div>
+			</div>
+			<div id="div3">
+				<fieldset>
+					<legend><b>Soins infirmiers</b></legend>
+					<br/>
+					
+					<obsgroup groupingConceptId="10142">
+						<table>
+							<tr>
+								<td><obs conceptId="10142" answerConceptId="7113"
+										style="checkbox" /></td>
+								<td><obs conceptId="10142" answerConceptId="7114"
+										style="checkbox" /></td>
+								<td><obs conceptId="10142" answerConceptId="7115"
+										style="checkbox" /></td>
+							</tr>
+							<tr>
+								<td><obs conceptId="10142" answerConceptId="7116"
+										style="checkbox" /></td>
+								<td><obs conceptId="10142" answerConceptId="7117"
+										style="checkbox" /></td>
+								<td><obs conceptId="10142" answerConceptId="7118"
+										style="checkbox" /></td>
+							</tr>
+							<tr>
+								<td><obs conceptId="10142" answerConceptId="7119"
+										style="checkbox" /></td>
+								<td><obs conceptId="10142" answerConceptId="7120"
+										style="checkbox" /></td>
+								<td><obs conceptId="10142" answerConceptId="7121"
+										style="checkbox" /></td>
+							</tr>
+							<tr>
+								<td><obs conceptId="10142" answerConceptId="7122"
+										style="checkbox" /></td>
+								<td><obs conceptId="10142" answerConceptId="7123"
+										style="checkbox" /></td>
+								<td></td>
+							</tr>
+						</table>
+					</obsgroup>			
+					
+					<br/>					
+				</fieldset>
+				
+				<div style="color: blue;" id="close3"><span><b>[Close me]</b></span></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- *************************************** -->
+
+	<div class="separator">
+		<submit />
+	</div>
+	<div class="footer">
+		<b>&#169;R.N.P</b><i> Service. Protection. Integrity</i>
+	</div>
+</div>
+
+<!-- END - MEDICAL ACTS FORM --> </htmlform>

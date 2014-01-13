@@ -1,0 +1,343 @@
+<htmlform>
+	
+<style>		
+	body{
+		background-color: #ffffff;
+	}
+
+	.bodycontainer{
+		padding: 2px;
+		background-color: transparent;
+	}
+	.header{
+		font-style: italic;
+		font-family: Gill, Georgia, serif;
+		font-size: x-large;
+		font-weight: bold;
+		color: #02416e;
+		height: 40px;
+		width: 100%;
+		border: 2px solid #ccccff;
+		text-align: center;
+		background-color: #ebf2f7;
+		margin-bottom: 5px;
+	}
+	.container{
+		clear: both;
+		height: auto;
+		width: 100%;
+		padding: 2px;
+		background-color: transparent;
+	}
+
+	.leftsection{
+		clear: both;
+		float: left;
+		width: 50%;
+		margin-bottom: 5px;
+	}
+	.sectioninleft{
+		border-right: 2px solid #02416e;
+		background-color: #ebf2f7;
+		border-bottom: 2px solid #02416e;
+		border-left: 2px solid #02416e;
+		border-top: 2px solid #02416e;
+	}
+	.rightsection{
+		float: right;
+		width: 50%;
+		margin-bottom: 5px;
+	}
+	.sectioninright{
+		background-color: #ebf2f7;
+		border-left: none;
+		border-bottom: 2px solid #02416e;
+		border-right: 2px solid #02416e;
+		border-top: 2px solid #02416e;
+	}
+	.section{
+		margin-bottom: 5px;
+		clear: both;
+		background-color: #ebf2f7;
+		border: 2px solid #02416e;
+	}
+	.sectionheader{
+		font-style: italic;
+		font-family: Gill, Georgia, serif;
+		font-size: medium;
+		font-weight: bold;
+		height: auto;
+		width: inherit;
+		border: 2px solid #ccccff;
+		text-align: left;
+		padding: 2px;
+		background-color: #81afc1;
+	}
+	.sectionbody{
+		clear: both;
+		height: auto;
+		width: inherit;
+		background-color: transparent;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	.separator{
+		clear: both;
+		font-style: normal;
+		font-family: Gill, Georgia, serif;
+		font-size: larger;
+		font-weight: bold;
+		color: #02416e;
+		height: 30px;
+		border: 2px solid #ccccff; 
+		border-left: 2px solid #02416e;
+		border-bottom: none;
+		border-right: 2px solid #02416e;
+		border-top: 2px solid #02416e;
+		text-align: center;
+		background-color: #ebf2f7;
+	}
+
+	.footer{
+		clear: both;
+		height: 20px;
+		width: 100%;
+		border: 2px solid #ccccff;
+		text-align: center;
+		background-color: #fbfce3;
+	}
+	input[type="text"] {
+		font-style: italic;
+		font-family: Georgia;
+	}
+	input[type="submit"] {
+		font-style: italic;
+		font-family: Georgia;
+	}
+</style>
+
+<!-- ISANGE CONSULTATION PSYCHOLOGIQUE FORM -->
+		
+<div class="header">
+Isange One Stop Center - PSYCHOSOCIAL
+</div>
+<div class="bodycontainer">
+	<div class="separator">Consultation psychologique</div>
+	<div class="section">
+		<div class="sectionheader">Patient information</div>
+		<div class="sectionbody">
+			<table class="baseline-aligned">
+				<tr>
+					<td>Encounter date</td>
+					<td><encounterDate default="today" size="30"/></td>
+				</tr>
+				<tr>
+					<td>Patient names</td>
+					<td><b><u><lookup expression="patient.personName"/></u></b><br/>
+						{<b>Id:</b><lookup expression="patient.patientIdentifier.identifier"/>;
+						<b>Sex:</b><lookup expression="patient.gender"/>;
+						<b>Age:</b><lookup expression="patient.age"/>}</td>
+				</tr>
+				<tr>
+					<td>Location</td>
+					<td><encounterLocation default="1006"/></td>
+				</tr>
+				<tr>
+					<td>Provider</td>
+					<td><encounterProvider default="currentUser"/></td>
+				</tr>
+				<tr>
+					<td>Social status</td>
+					<td><obs conceptId="7909" answerConceptIds="7961,7962,7963,7964,2416,1069" /></td>
+				</tr>
+				<tr>
+					<td>Civil status</td>
+					<td><obs conceptId="1054" answerConceptIds="3347,6139,3628,1057,1058,1059,1060,1067,3346,5555,5622"/></td>
+				</tr>
+				<tr>
+					<td>Profession</td>
+					<td><obs conceptId="1304" answerConceptIds="1307,6138,3395,3343,2445,3396,1404,1309,1107,1306,1684,1685,1686,1687,3344,1326,1682,1683,1308,3345,2446,5622,2452,1067"/></td>
+				</tr>
+				<tr>
+					<td>Function</td>
+					<td><obs conceptId="1304" answerConceptIds="1307,6138,3395,3343,2445,3396,1404,1309,1107,1306,1684,1685,1686,1687,3344,1326,1682,1683,1308,3345,2446,5622,2452,1067"/></td>
+				</tr>
+				<tr>
+					<td>Father's names</td>
+					<td><obs conceptId="6699" size="50"/></td>
+				</tr>
+				<tr>
+					<td>Mother's names</td>
+					<td><obs conceptId="6698" size="50"/></td>
+				</tr>
+				<tr>
+					<td>Guardian's names</td>
+					<td><obs conceptId="1824" size="50"/></td>
+				</tr>
+				<tr>
+					<td>Guardian relationship to the victim</td>
+					<td><obs conceptId="1826" size="50"/></td>
+				</tr>
+				<tr>
+					<td>Names of referring person/Institution</td>
+					<td><obs conceptId="6335" size="50"/></td>
+				</tr>
+				<tr>
+					<td>Phone number</td>
+					<td><obs conceptId="2614" size="50"/></td>
+				</tr>
+				<tr>
+					<td>Nationality</td>
+					<td><obs conceptId="7907" size="50"/></td>
+				</tr>
+				<tr>
+					<td>Highest level of school completed</td>
+					<td><obs conceptId="1688" answerConceptIds="1107,2942,2943,2944,2945,2946,2947,1067,1107,2416"/></td>
+				</tr>
+				<tr>
+					<td>Religion</td>
+					<td><obs conceptId="7906" size="50"/></td>
+				</tr>
+				<!--<tr>
+					<td>Genogram (Family status)</td>
+					<td><obs conceptId="7908" style="textarea" rows="3" cols="30"/></td>
+				</tr>-->
+				<tr>
+					<td>Anamnese familiale</td>
+					<td><obs conceptId="974" style="textarea" rows="3" cols="30"/></td>
+				</tr>
+				<tr>
+					<td>Anamnese personnelle et contexte de la crise</td>
+					<td><obs conceptId="974" style="textarea" rows="3" cols="30"/></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="section">
+		<div class="sectionheader">Case details</div>
+		<div class="sectionbody">
+			<table>
+				<tr>
+					<td>The aggressor's identification</td>
+					<td><obs conceptId="7910" size="50"/></td>
+				</tr>
+				<tr>
+					<td>Complaints or Symptoms</td>
+					<td><obs conceptId="1293" answerConceptIds="2602,107,1273,136,458,151,16,161,1768,2521,2553,2600,2601,2603,2840,2841,5008,512,5544,5622,5945,5960,5980,6029,620,80,821,832,879"/></td>
+				</tr>
+				<tr>
+					<td>Violence type (case details)</td>
+					<td><obs conceptId="7933"/></td>
+				</tr>
+				<tr>
+					 <td>- <b>Case status / Etat de cas: </b></td>
+					 <td><obs conceptId="8048" answerConceptIds="6964,8049" answerLabels="New Case, Old Case" required="true" /></td>
+				</tr>	
+				<tr>
+					<td>Diagnosis</td>
+					<td><obs conceptId="7911"/>
+                                        </td>
+				</tr>	
+
+				<tr>
+					<td>Personality test results (Personality disorders)</td>
+					 <obsgroup groupingConceptId="8497">
+						<td>
+							<table>
+								<tr>
+									<td><obs conceptId="8497" answerConceptId="8486" style="checkbox"/></td>
+									<td><obs conceptId="8497" answerConceptId="8487" style="checkbox"/></td>
+									<td><obs conceptId="8497" answerConceptId="8488" style="checkbox"/></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="8497" answerConceptId="8489" style="checkbox"/></td>
+									<td><obs conceptId="8497" answerConceptId="8490" style="checkbox"/></td>
+									<td><obs conceptId="8497" answerConceptId="8491" style="checkbox"/></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="8497" answerConceptId="8492" style="checkbox"/></td>
+									<td><obs conceptId="8497" answerConceptId="8493" style="checkbox"/></td>
+									<td><obs conceptId="8497" answerConceptId="8494" style="checkbox"/></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="8497" answerConceptId="8495" style="checkbox"/></td>
+									<td><obs conceptId="8497" answerConceptId="8496" style="checkbox"/></td>
+									<td></td>
+								</tr>
+							</table>
+						</td>
+					 </obsgroup>
+				</tr>
+<br/><br/><br/>
+				<tr>
+					<td>Depression test results (Mood disorder)</td>
+				     <obsgroup groupingConceptId="8437">
+					 <td>
+							<table>
+								<tr>
+									<td><obs conceptId="8437" answerConceptId="8431" style="checkbox"/></td>
+									<td><obs conceptId="8437" answerConceptId="8432" style="checkbox"/></td>
+									<td><obs conceptId="8437" answerConceptId="8433" style="checkbox"/></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="8437" answerConceptId="8434" style="checkbox"/></td>
+									<td><obs conceptId="8437" answerConceptId="8435" style="checkbox"/></td>
+									<td><obs conceptId="8437" answerConceptId="8436" style="checkbox"/></td>
+								</tr>
+							</table>
+						</td>
+					 </obsgroup>
+				</tr>		
+				<tr>
+					<td>Treatment</td>
+					<td><obs conceptId="7914" style="textarea" rows="3" cols="30"/></td>
+				</tr>		
+				<tr>
+					<td>Observations / Comments</td>
+					<td><obs conceptId="2880" style="textarea" rows="3" cols="30"/></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	<div class="section">
+		<div class="sectionheader">Interview analysis / Fiche des entretiens</div>
+		<div class="sectionbody">
+			<table class="baseline-aligned">
+				<tr>
+					<td>Interview date</td>
+					<td><obs conceptId="2595"/> | Duration <obs conceptId="1364" size="10"/></td>
+				</tr>
+				<tr>
+					<td>Diagnostic impressions</td>
+					<td><obs conceptId="1364" style="textarea" rows="3" cols="30"/></td>
+				</tr>
+				<tr>
+					<td>Intervention (PEC, T3 or Home visit)</td>
+					<td><obs conceptId="9749"/></td>
+				</tr>
+				<tr>
+					<td>Current victim status (patient status summary)</td>
+					<td><obs conceptId="1464" style="textarea" rows="3" cols="30"/></td>
+				</tr>
+				<tr>
+					<td>Next Scheduled visit</td>
+					<td><obs conceptId="5096" allowFutureDates="true"/></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</div>
+
+<div class="separator">
+	<submit/>
+</div>    
+<div class="footer">
+	<b>R.N.P &#169;</b><i> Service. Protection. Integrity</i>
+</div>
+	
+<!-- END - ISANGE CONSULTATION PSYCHOLOGIQUE FORM -->
+
+</htmlform>

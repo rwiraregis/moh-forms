@@ -1,0 +1,192 @@
+<htmlform>
+
+<style>
+body {
+	background-color: #ffffff;
+}
+
+.bodycontainer {
+	padding: 2px;
+	background-color: #transparent;
+}
+
+.header {
+	font-style: italic;
+	font-family: Gill, Georgia, serif;
+	font-size: x-large;
+	font-weight: bold;
+	color: #02416e;
+	height: 40px;
+	width: 100%;
+	border: 2px solid #ccccff;
+	text-align: center;
+	background-color: #ebf2f7;
+	margin-bottom: 5px;
+}
+
+.container {
+	clear: both;
+	height: auto;
+	width: 100%;
+	padding: 2px;
+	background-color: transparent;
+}
+
+.section {
+	margin-bottom: 5px;
+	clear: both;
+	background-color: #ebf2f7;
+	border: 2px solid #02416e;
+}
+
+.sectionheader {
+	font-style: italic;
+	font-family: Gill, Georgia, serif;
+	font-size: medium;
+	font-weight: bold;
+	height: auto;
+	width: inherit;
+	border: 2px solid #ccccff;
+	text-align: left;
+	padding: 2px;
+	background-color: #81afc1;
+}
+
+.sectionbody {
+	clear: both;
+	height: auto;
+	width: inherit;
+	background-color: transparent;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+input[type="text"] {
+	font-style: italic;
+	font-family: Georgia;
+}
+
+input[type="submit"] {
+	font-style: italic;
+	font-family: Georgia;
+}
+
+.sectionFieldset {
+	margin-bottom: 5px;
+	clear: both;
+	background-color: #ebf2f7;
+	border: 2px solid #02416e;
+	padding: 30px;
+}
+</style>
+
+
+
+<div class="header">POSTPARTUM FOLLOWUP</div>
+
+<includeIf velocityTest="$patient.gender == 'M' "> <h2>The patient is not a female to use this Maternity Form!</h2></includeIf>
+
+<includeIf velocityTest="$patient.gender == 'F' ">
+
+<div class="section">
+<div class="sectionheader">Encounter Detail</div>
+<div class="sectionbody">
+<table class="baseline-aligned">
+	<tr>
+		<td>Date</td>
+		<td><span id="encDate"><encounterDate default="today"
+			size="30" /></span></td>
+	</tr>
+	<tr>
+		<td>Patient names</td>
+		<td><b><u><lookup expression="patient.personName" /></u></b><br />
+		{<b>Id:</b><lookup expression="patient.patientIdentifier.identifier" />;
+		<b>Sex:</b><lookup expression="patient.gender" />; <b>Age:</b><lookup
+			expression="patient.age" />}</td>
+	</tr>
+	<tr>
+		<td>Location</td>
+		<td><encounterLocation default="1006" /></td>
+	</tr>
+	<tr>
+		<td>Provider</td>
+		<td><encounterProvider default="currentUser" /></td>
+	</tr>
+</table>
+</div>
+</div>
+
+<section>
+<div class="sectionheader">Mother's followup</div>
+<table class="baseline-aligned">
+	<tr>
+		<td><obs conceptId="5086"
+			labelText="Diastolic Blood Pressure/Pression Artérielle Diastolique" /></td>
+	</tr>
+	<tr>
+		<td><obs conceptId="5085"
+			labelText="Systolic Blood Pressure/Pression Artérielle Systolique" /></td>
+	</tr>
+
+	<tr>
+		<td><obs conceptId="10126" labelText="Pertes" /></td>
+	</tr>
+	<tr>
+		<td><obs conceptId="10128" labelText="Sein" /></td>
+	</tr>
+
+	<tr>
+		<td><obsgroup groupingConceptId="10114"> <obs
+			conceptId="5089" labelText="Weight" /> <obs conceptId="5088"
+			labelText="To(C)" /> <obs conceptId="10127" labelText="Paleur conj." />
+		<obs conceptId="2881" labelText="Observation" style="textarea"
+			rows="3" cols="30" /> <obs conceptId="2880" labelText="Traitement"
+			style="textarea" rows="3" cols="30" /> </obsgroup></td>
+	</tr>
+
+</table>
+</section>
+
+<section>
+<div class="sectionheader">Baby's Followup</div>
+<table>
+	<tr>
+		<td>Poids</td>
+		<td><obs conceptId="5916" /></td>
+		<td>Ombilie</td>
+		<td><obs conceptId="10086" /></td>
+	</tr>
+	<tr>
+		<obsgroup groupingConceptId="10113">
+		<obs conceptId="5089" labelText="Weight" />
+		<obs conceptId="5088" labelText="To" />
+		<obs conceptId="10127" labelText="Paleur conj." />
+		<obs conceptId="2881" labelText="Observation" style="textarea"
+			rows="3" cols="25" />
+		<obs conceptId="2880" labelText="Traitement" style="textarea" rows="3"
+			cols="25" />
+		</obsgroup>
+	</tr>
+
+</table>
+</section>
+
+<section>
+<div class="sectionheader"></div>
+<table>
+	<tr>
+		<td>Next Visit Date</td>
+		<td><obs conceptId="5096" allowFutureDates="true" /></td>
+		<td>Planning Familial</td>
+		<td><obs conceptId="374" /></td>
+		<td>Provider</td>
+		<td><encounterProvider default="currentUser" /></td>
+	</tr>
+</table>
+</section>
+
+<submit />
+
+</includeIf>
+
+</htmlform>

@@ -1,0 +1,745 @@
+<htmlform>
+
+<style>
+body {
+	background-color: #ffffff;
+}
+
+.bodycontainer {
+	padding: 2px;
+	background-color: transparent;
+}
+
+.header {
+	font-style: italic;
+	font-family: Gill, Georgia, serif;
+	font-size: x-large;
+	font-weight: bold;
+	color: #02416e;
+	height: 40px;
+	width: 100%;
+	border: 2px solid #ccccff;
+	text-align: center;
+	background-color: #ebf2f7;
+	margin-bottom: 5px;
+}
+
+.container {
+	clear: both;
+	height: auto;
+	width: 100%;
+	padding: 2px;
+	background-color: transparent;
+}
+
+.leftsection {
+	clear: both;
+	float: left;
+	width: 50%;
+	margin-bottom: 5px;
+}
+
+.sectioninleft {
+	border-right: 2px solid #02416e;
+	background-color: #ebf2f7;
+	border-bottom: 2px solid #02416e;
+	border-left: 2px solid #02416e;
+	border-top: 2px solid #02416e;
+}
+
+.rightsection {
+	float: right;
+	width: 50%;
+	margin-bottom: 5px;
+}
+
+.sectioninright {
+	background-color: #ebf2f7;
+	border-left: none;
+	border-bottom: 2px solid #02416e;
+	border-right: 2px solid #02416e;
+	border-top: 2px solid #02416e;
+}
+
+.section {
+	margin-bottom: 5px;
+	clear: both;
+	background-color: #ebf2f7;
+	border: 2px solid #02416e;
+}
+
+.sectionheader {
+	font-style: italic;
+	font-family: Gill, Georgia, serif;
+	font-size: medium;
+	font-weight: bold;
+	height: auto;
+	width: inherit;
+	border: 2px solid #ccccff;
+	text-align: left;
+	padding: 2px;
+	background-color: #81afc1;
+}
+
+.sectionbody {
+	clear: both;
+	height: auto;
+	width: inherit;
+	background-color: transparent;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.separator {
+	clear: both;
+	font-style: normal;
+	font-family: Gill, Georgia, serif;
+	font-size: larger;
+	font-weight: bold;
+	color: #02416e;
+	height: 30px;
+	border: 2px solid #ccccff;
+	border-left: 2px solid #02416e;
+	border-bottom: none;
+	border-right: 2px solid #02416e;
+	border-top: 2px solid #02416e;
+	text-align: center;
+	background-color: #ebf2f7;
+}
+
+.footer {
+	clear: both;
+	height: 20px;
+	width: 100%;
+	border: 2px solid #ccccff;
+	text-align: center;
+	background-color: #fbfce3;
+}
+
+input[type="text"] {
+	font-style: italic;
+	font-family: Georgia;
+}
+
+input[type="submit"] {
+	font-style: italic;
+	font-family: Georgia;
+}
+</style>
+
+<script type="text/javascript">
+	if (jQuery) {
+
+		$j(document).ready( function() {
+			$j('#1-removeEntry').remove();
+			$j('#10-addEntry').remove();
+			$j('#1-toggleContainer').show();
+
+			$j('#11-removeEntry').remove();
+			$j('#20-addEntry').remove();
+			$j('#11-toggleContainer').show();
+
+			$j('#21-removeEntry').remove();
+			$j('#30-addEntry').remove();
+			$j('#21-toggleContainer').show();
+		});
+
+		$j(document)
+				.ready(
+						function() {
+							$j('button.addEntry')
+									.live(
+											"click",
+											function() {
+												var correctedAddButtonId = parseFloat(this.id) + 1;
+												var contentAddId = "#"
+														+ correctedAddButtonId
+														+ "-toggleContainer";
+												$j(contentAddId).toggle(true);
+												$j('#' + this.id).toggle(false);
+												$j(
+														'#' + parseFloat(this.id) + '-removeEntry')
+														.toggle(false);
+												return false;
+											});
+						});
+
+		$j(document)
+				.ready(
+						function() {
+							$j('button.removeEntry')
+									.live(
+											"click",
+											function() {
+												var correctedRemoveButtonId = parseFloat(this.id) - 1;
+												var contentAddId = "#"
+														+ parseFloat(this.id)
+														+ "-toggleContainer";
+												$j(contentAddId).toggle(false);
+												$j(':input:not(:button)',
+														contentAddId).val( []);
+												$j(
+														'#' + correctedRemoveButtonId + '-addEntry')
+														.toggle(true);
+												$j(
+														'#' + correctedRemoveButtonId + '-removeEntry')
+														.toggle(true);
+
+												return false;
+											});
+
+						});
+
+		// This where we concatenate History of the illness to the Past Medical
+		$j(document)
+				.ready(
+						function() {
+							var past = "";
+							var answer = "";
+							var answer1 = '';
+							var answer2 = '';
+							var ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10;
+							ans1 = ans2 = ans3 = ans4 = ans5 = ans6 = ans7 = ans8 = ans9 = ans10 = "";
+
+							$j('button.addEntry')
+									.click(
+											function() {
+												if ($j("#w20 option:selected")) {
+													if ($j(
+															"#w20 option:selected")
+															.text() != "")
+														ans1 = $j(
+																"#w20 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w22 option:selected")) {
+													if ($j(
+															"#w22 option:selected")
+															.text() != "")
+														ans2 = $j(
+																"#w22 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w24 option:selected")) {
+													if ($j(
+															"#w24 option:selected")
+															.text() != "")
+														ans3 = $j(
+																"#w24 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w26 option:selected")) {
+													if ($j(
+															"#w26 option:selected")
+															.text() != "")
+														ans4 = $j(
+																"#w26 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w28 option:selected")) {
+													if ($j(
+															"#w28 option:selected")
+															.text() != "")
+														ans5 = $j(
+																"#w28 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w30 option:selected")) {
+													if ($j(
+															"#w30 option:selected")
+															.text() != "")
+														ans6 = $j(
+																"#w30 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w32 option:selected")) {
+													if ($j(
+															"#w32 option:selected")
+															.text() != "")
+														ans7 = $j(
+																"#w32 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w34 option:selected")) {
+													if ($j(
+															"#w34 option:selected")
+															.text() != "")
+														ans8 = $j(
+																"#w34 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w36 option:selected")) {
+													if ($j(
+															"#w36 option:selected")
+															.text() != "")
+														ans9 = $j(
+																"#w36 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w38 option:selected")) {
+													if ($j(
+															"#w38 option:selected")
+															.text() != "")
+														ans10 = $j(
+																"#w38 option:selected")
+																.text()
+																+ ", ";
+												}
+
+												answer = ans1 + ans2 + ans3
+														+ ans4 + ans5 + ans6
+														+ ans7 + ans8 + ans9
+														+ ans10;
+												$j(
+														"span#syndromic_summary textarea")
+														.val(
+																past
+																		+ "- CONS MOTIVE: "
+																		+ answer
+																		+ "\n- ILLNESS HISTORY: "
+																		+ answer2
+																		+ "\n- PAST/ANTECEDENTS: "
+																		+ answer1
+																		+ "\n- OTHER: ");
+											});
+
+							$j("span#past_medical textarea").keyup( function() {
+								answer1 = $j(this).val();
+								//past += $j("span#syndromic_summary").val();
+									$j("span#syndromic_summary textarea").val(
+											past + "- CONS MOTIVE: " + answer
+													+ "\n- ILLNESS HISTORY: "
+													+ answer2
+													+ "\n- PAST/ANTECEDENTS: "
+													+ answer1 + "\n- OTHER: ");
+								});
+
+							$j("span#history_illness textarea")
+									.keyup( function() {
+										answer2 = $j(this).val();
+										//past += $j("span#syndromic_summary").val();			
+											$j(
+													"span#syndromic_summary textarea")
+													.val(
+															past
+																	+ "- CONS MOTIVE: "
+																	+ answer
+																	+ "\n- ILLNESS HISTORY: "
+																	+ answer2
+																	+ "\n- PAST/ANTECEDENTS: "
+																	+ answer1
+																	+ "\n- OTHER: ");
+										});
+						});
+
+		$j(document).ready( function() {
+
+			// Setting the size for the autocomplete fields.
+				$j("span#presumptive input").attr("size", "60");
+				$j("span#primary_digno input").attr("size", "60");
+				$j("span#second_digno input").attr("size", "60");
+				$j("span#encDate input").attr("size", "15");
+
+				$j("input[type=radio][name=normal_1]").change(
+						function() {
+							var answer = $j(this).val();
+							if (answer == "normal") {
+								$j("span#pulmonary textarea").val("Normal");
+								$j("#pulmonary").disableSelection();
+							} else {
+								$j("span#pulmonary textarea").val(
+										"Abnormal because : ");
+								$j("#pulmonary").enableSelection();
+								$j("span#pulmonary textarea").focus();
+							}
+						});
+
+				$j("input[type=radio][name=normal_2]").change( function() {
+					var answer = $j(this).val();
+					if (answer == "normal") {
+						$j("span#cardio textarea").val("Normal");
+						$j("#cardio").disableSelection();
+					} else {
+						$j("span#cardio textarea").val("Abnormal because : ");
+						$j("#cardio").enableSelection();
+						$j("span#cardio textarea").focus();
+					}
+				});
+
+				$j("input[type=radio][name=normal_3]").change(
+						function() {
+							var answer = $j(this).val();
+							if (answer == "normal") {
+								$j("span#abdominal textarea").val("Normal");
+								$j("#abdominal").disableSelection();
+							} else {
+								$j("span#abdominal textarea").val(
+										"Abnormal because : ");
+								$j("#abdominal").enableSelection();
+								$j("span#abdominal textarea").focus();
+							}
+						});
+
+				$j("input[type=radio][name=normal_4]").change(
+						function() {
+							var answer = $j(this).val();
+							if (answer == "normal") {
+								$j("span#neurologic textarea").val("Normal");
+								$j("#neurologic").disableSelection();
+							} else {
+								$j("span#neurologic textarea").val(
+										"Abnormal because : ");
+								$j("#neurologic").enableSelection();
+								$j("span#neurologic textarea").focus();
+							}
+						});
+
+				$j("input[type=radio][name=normal_5]").change( function() {
+					var answer = $j(this).val();
+					if (answer == "normal") {
+						$j("span#musculo textarea").val("Normal");
+						$j("#musculo").disableSelection();
+					} else {
+						$j("span#musculo textarea").val("Abnormal because : ");
+						$j("#musculo").enableSelection();
+						$j("span#musculo textarea").focus();
+					}
+				});
+
+				$j("input[type=radio][name=normal_6]").change(
+						function() {
+							var answer = $j(this).val();
+							if (answer == "normal") {
+								$j("span#urogenital textarea").val("Normal");
+								$j("#urogenital").disableSelection();
+							} else {
+								$j("span#urogenital textarea").val(
+										"Abnormal because : ");
+								$j("#urogenital").enableSelection();
+								$j("span#urogenital textarea").focus();
+							}
+						});
+
+				$j("input[type=radio][name=normal_7]").change( function() {
+					var answer = $j(this).val();
+					if (answer == "normal") {
+						$j("span#skin textarea").val("Normal");
+						$j("#skin").disableSelection();
+					} else {
+						$j("span#skin textarea").val("Abnormal because : ");
+						$j("#skin").enableSelection();
+						$j("span#skin textarea").focus();
+					}
+				});
+
+				$j("input[type=radio][name=normal_8]").change(
+						function() {
+							var answer = $j(this).val();
+							if (answer == "normal") {
+								$j("span#psychomotor textarea").val("Normal");
+								$j("#psychomotor").disableSelection();
+							} else {
+								$j("span#psychomotor textarea").val(
+										"Abnormal because : ");
+								$j("#psychomotor").enableSelection();
+								$j("span#psychomotor textarea").focus();
+							}
+						});
+
+				$j("input[type=radio][name=normal_9]").change( function() {
+					var answer = $j(this).val();
+					if (answer == "normal") {
+						$j("span#other textarea").val("Normal");
+						$j("#other").disableSelection();
+					} else {
+						$j("span#other textarea").val("Abnormal because : ");
+						$j("#other").enableSelection();
+						$j("span#other textarea").focus();
+					}
+				});
+			});
+
+	}
+</script>
+
+<!-- TRAVAIL ET ACCOUCHEMENT -->
+
+<div class="header">KPH - TRAVAIL ET ACCOUCHEMENT</div>
+
+<includeIf velocityTest="$patient.gender == 'M' "> <h2>The patient is not a female to use this Maternity Form!</h2></includeIf>
+
+<includeIf velocityTest="$patient.gender == 'F' ">
+
+<div class="bodycontainer">
+<div class="separator">Travail et accouchement</div>
+
+<div class="section">
+<div class="sectionheader">Registration information</div>
+<div class="sectionbody">
+<table class="baseline-aligned">
+	<tr>
+		<td>Date</td>
+		<td><span id="encDate"><encounterDate default="today"
+			size="30" /></span></td>
+	</tr>
+	<tr>
+		<td>Patient names</td>
+		<td><b><u><lookup expression="patient.personName" /></u></b><br />
+		{<b>Id:</b><lookup expression="patient.patientIdentifier.identifier" />;
+		<b>Sex:</b><lookup expression="patient.gender" />; <b>Age:</b><lookup
+			expression="patient.age" />}</td>
+	</tr>
+	<tr>
+		<td>Location</td>
+		<td><encounterLocation default="1006"/></td>
+	</tr>
+
+</table>
+</div>
+</div>
+
+<div class="section">
+<div class="sectionheader">Travail et Accouchement</div>
+<div class="sectionbody">
+<table class="baseline-aligned">
+	<tr>
+		<td colspan="2">
+		<fieldset><legend> <b>Anamnèse actuel</b> </legend>
+		<table>
+			<tr>
+				<td>Debut de contractions</td>
+				<td><obs conceptId="10046" /></td>
+			</tr>
+			<tr>
+				<td>Poche rompue</td>
+				<td><obs conceptId="10047"/>Depuis
+				quand<obs conceptId="10048" /></td>
+			</tr>
+
+		</table>
+		</fieldset>
+		<br />
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div class="section">
+<div class="sectionheader">Evolution</div>
+<div class="sectionbody">
+<table class="baseline-aligned">
+
+	<tr>
+		<td>Abd. hauteur uterine</td>
+		<td><obs conceptId="8145" />cm</td>
+	</tr>
+	<tr>
+		<td>Number of contractions</td>
+		<td><obs conceptId="10049" />/10 minutes</td>
+	</tr>
+	<tr>
+		<td>Tonus</td>
+		<td><obs conceptId="10050" /></td>
+	</tr>
+	<tr>
+		<td>BCF (Bruit de coeur foetal)</td>
+		<td><obs conceptId="10054" /></td>
+	</tr>
+	<tr>
+		<td>Evaluation du bassin</td>
+		<td><obs conceptId="10057" /></td>
+	</tr>
+	<tr>
+		<td>T.V. Dilatation</td>
+		<td><obs conceptId="10109" /></td>
+	</tr>
+	<tr>
+		<td>Oedème du col</td>
+		<td><obs conceptId="10058" /></td>
+	</tr>
+	<tr>
+		<td>Bosse</td>
+		<td><obs conceptId="10059" /></td>
+	</tr>
+	<tr>
+		<td>Baby presentation</td>
+		<td><obs conceptId="8149" /></td>
+	</tr>
+	<tr>
+		<td>Poche (Liquide amniotique)</td>
+		<td><obs conceptId="10126" /></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		<fieldset><legend> <b>Ecoulement</b> </legend>
+		<table>
+			<tr>
+				<td>- Odeur</td>
+				<td><obs conceptId="10062" /></td>
+			</tr>
+			<tr>
+				<td>- Couleur</td>
+				<td><obs conceptId="10133" /></td>
+			</tr>
+		</table>
+		</fieldset>
+		<br />
+		</td>
+	</tr>
+	<tr>
+		<td>Mode d'accouchement</td>
+		<td>
+		<obs conceptId="5630" answerConceptIds="10991,10992,1170,1171,1172,5622" answerLabels="VACUUM DELIVERY,FORCEPS,SPONTANEOUS VAGINAL DELIVERY,CESAREAN DELIVERY,BREECH DELIVERY,OTHER NON-CODED"/></td>
+	</tr>
+	<tr>
+		<td>Délivrance</td>
+		<td><obs conceptId="5599" allowFutureDates="true" /></td>
+	</tr>
+	<tr>
+		<td>Conclusion</td>
+		<td><obs conceptId="1620" style="textarea" rows="3" cols="30" /></td>
+	</tr>
+</table>
+<br />
+</div>
+</div>
+
+<section>
+<div class="sectionheader">MOTHER'S INFORMATION</div>
+<table class="baseline-aligned">
+
+	<tr>
+		<td>Date d'accouchement</td>
+		<td><obs conceptId="5599" /></td>
+	</tr>
+	<tr>
+		<td>Done By</td>
+		<td><encounterProvider default="currentUser" /></td>
+	</tr>
+	<tr>
+		<td>Attended by Health Worker</td>
+		<td><obs conceptId="8176" /></td>
+		<td>Date et Heure de delivrance(Placenta)</td>
+		<td><obs conceptId="10064" /></td>
+		<td>  Placenta Status</td>
+		<td><obs conceptId="10067" /></td>
+
+	</tr>
+	<tr>
+		<td>Type of Placenta delivery</td>
+		<td><obs conceptId="10076" /></td>
+		<td>Globe de sureté</td>
+		<td><obs conceptId="10077" /></td>
+		<td>Observation</td>
+		<td><obs conceptId="10078" style="textarea" rows="3" cols="30" /></td>
+
+	</tr>
+	<tr>
+		<td>Intervention</td>
+		<td><obs conceptId="10070" style="textarea" rows="3" cols="30" /></td>
+	</tr>
+</table>
+</section> <section>
+<div class="sectionheader">BABY'S INFORMATION</div>
+<table class="baseline-aligned">
+	<tr>
+		<td>Child born status</td>
+		<td><obs conceptId="6545" /></td>
+	</tr>
+	<tr>
+		<td>Sex of Baby</td>
+		<td><obs conceptId="8160" /></td>
+	</tr>
+	<tr>
+		<td>Weight</td>
+		<td><obs conceptId="5089" /></td>
+	</tr>
+</table>
+<table>
+	<div class="sectionFieldset">
+	<fieldset>
+		<legend><b>Apgar at 1 Minute</b> </legend>		
+		<obs conceptId="10139" labelCode="activity and muscle tone" /> <br />
+		<obs conceptId="5087" labelCode="Pulse (heart rate)" /> <br />
+		<obs conceptId="10141" labelCode="grimace response (medically known as reflex irritability)" /><br />
+		<obs conceptId="10140" labelCode="appearance (skin coloration)" /> <br />
+		<obs conceptId="1071" labelCode="respiration (breathing rate and effort)" /> <br />
+		<obs conceptId="8537" labelText="Total Apgar Score at 1 minute" /><br />
+	</fieldset>
+
+	<fieldset>
+		<legend><b>Apgar at 5 Minutes</b></legend>
+		<obs conceptId="10139" labelCode="activity and muscle tone" /> <br />
+		<obs conceptId="5087" labelCode="Pulse (heart rate)" /> <br />
+		<obs conceptId="10141" labelCode="grimace response (medically known as reflex irritability)" /><br />
+		<obs conceptId="10140" labelCode="appearance (skin coloration)" /> <br />
+		<obs conceptId="1071" labelCode="respiration (breathing rate and effort)" /> <br />
+		<obs conceptId="8506" labelText="Total Apgar Score at 5 minute"/><br />
+	</fieldset>
+	<fieldset>
+		<legend><b>Apgar at 10 Minutes</b></legend>
+		<obs conceptId="10139" labelCode="activity and muscle tone" /> <br />
+		<obs conceptId="5087" labelCode="Pulse (heart rate)" /> <br />
+		<obs conceptId="10141" labelCode="grimace response (medically known as reflex irritability)" /><br />
+		<obs conceptId="10140" labelCode="appearance (skin coloration)" /> <br />
+		<obs conceptId="1071" labelCode="respiration (breathing rate and effort)" /> <br />
+		<obs conceptId="10989" labelText="Total Apgar Score at 10 minute"/><br />
+		<!-- <obs conceptId="10990" labelText="Total Score APGAR"/><br/> -->
+		<!--
+		-->
+	</fieldset>
+	</div>
+</table>
+<table>
+	<tr>
+		<td>Cris/Pleurs apres</td>
+		<td><obs conceptId="10084" /></td>
+		<td>Reanimation</td>
+		<td><obs conceptId="10138" /></td>
+		<td>Mort avant 24hrs</td>
+		<td><obs conceptId="10080" /></td>
+	</tr>
+	<tr>
+		<td>Malformation</td>
+		<td><obs conceptId="10081" /></td>
+
+	</tr>
+	<tr>
+		<obsgroup groupingConceptId="10134">
+		<obs conceptId="2881" labelText="Observations" style="textarea"
+			rows="2" cols="30" />
+		<obs conceptId="2880" labelText="Traitement " style="textarea" rows="2"
+			cols="30" />
+		</obsgroup>
+	</tr>
+	<tr>
+		<td>Date Polio</td>
+		<td><obs conceptId="10082" /></td>
+		<td>BCG</td>
+		<td><obs conceptId="10083" /></td>
+		<td>Next Visit Date</td>
+		<td><obs conceptId="5096"  allowFutureDates="true" /></td>
+	</tr>
+</table>
+</section>
+
+
+<div class="separator"><submit /></div>
+<div class="footer"><b>&#169;R.N.P</b><i> Service. Protection.Integrity</i></div>
+</div>
+
+</includeIf>
+
+<!-- END - TRAVAIL ET ACCOUCHEMENT -->
+
+</htmlform>

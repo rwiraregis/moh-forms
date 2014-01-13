@@ -1,0 +1,206 @@
+<htmlform>
+
+<style>		
+	body{
+		background-color: #ffffff;
+	}
+
+	.bodycontainer{
+		padding: 2px;
+		background-color: transparent;
+	}
+	.header{
+		font-style: italic;
+		font-family: Gill, Georgia, serif;
+		font-size: x-large;
+		font-weight: bold;
+		color: #02416e;
+		height: 40px;
+		width: 100%;
+		border: 2px solid #ccccff;
+		text-align: center;
+		background-color: #ebf2f7;
+		margin-bottom: 5px;
+	}
+	.container{
+		clear: both;
+		height: auto;
+		width: 100%;
+		padding: 2px;
+		background-color: transparent;
+	}
+
+	.leftsection{
+		clear: both;
+		float: left;
+		width: 50%;
+		margin-bottom: 5px;
+	}
+	.sectioninleft{
+		border-right: 2px solid #02416e;
+		background-color: #ebf2f7;
+		border-bottom: 2px solid #02416e;
+		border-left: 2px solid #02416e;
+		border-top: 2px solid #02416e;
+	}
+	.rightsection{
+		float: right;
+		width: 50%;
+		margin-bottom: 5px;
+	}
+	.sectioninright{
+		background-color: #ebf2f7;
+		border-left: none;
+		border-bottom: 2px solid #02416e;
+		border-right: 2px solid #02416e;
+		border-top: 2px solid #02416e;
+	}
+	.section{
+		margin-bottom: 5px;
+		clear: both;
+		background-color: #ebf2f7;
+		border: 2px solid #02416e;
+	}
+	.sectionheader{
+		font-style: italic;
+		font-family: Gill, Georgia, serif;
+		font-size: medium;
+		font-weight: bold;
+		height: auto;
+		width: inherit;
+		border: 2px solid #ccccff;
+		text-align: left;
+		padding: 2px;
+		background-color: #81afc1;
+	}
+	.sectionbody{
+		clear: both;
+		height: auto;
+		width: inherit;
+		background-color: transparent;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	.separator{
+		clear: both;
+		font-style: normal;
+		font-family: Gill, Georgia, serif;
+		font-size: larger;
+		font-weight: bold;
+		color: #02416e;
+		height: 30px;
+		border: 2px solid #ccccff; 
+		border-left: 2px solid #02416e;
+		border-bottom: none;
+		border-right: 2px solid #02416e;
+		border-top: 2px solid #02416e;
+		text-align: center;
+		background-color: #ebf2f7;
+	}
+
+	.footer{
+		clear: both;
+		height: 20px;
+		width: 100%;
+		border: 2px solid #ccccff;
+		text-align: center;
+		background-color: #fbfce3;
+	}
+	input[type="text"] {
+		font-style: italic;
+		font-family: Georgia;
+	}
+	input[type="submit"] {
+		font-style: italic;
+		font-family: Georgia;
+	}
+</style>
+
+<!-- ISANGE SAFE ROOM FORM -->
+		
+<div class="header">
+Isange One Stop Center - SAFE ROOM</div>
+<div class="bodycontainer">
+	<div class="separator">
+	Safe room details
+	</div>
+	<div class="section">
+		<div class="sectionheader">Bill details</div>
+		<div class="sectionbody">
+			<table class="baseline-aligned">
+				<tr>
+					<td>Date</td>
+					<td><encounterDate default="today" size="30"/></td>
+				</tr>
+				<tr>
+					<td>Location</td>
+					<td><encounterLocation default="1006"/></td>
+				</tr>
+				<tr>
+					<td>Provider</td>
+					<td><encounterProvider default="currentUser"/></td>
+				</tr>
+				<tr>
+					<td>Social Worker</td>
+					<td><encounterProviderAndRole/></td>
+				</tr>
+				<tr>
+					<td>Victim</td>
+					<td><b><u><lookup expression="patient.personName"/></u></b><br/>
+						{<b>Id:</b><lookup expression="patient.patientIdentifier.identifier"/>;
+						<b>Sex:</b><lookup expression="patient.gender"/>;
+						<b>Age:</b><lookup expression="patient.age"/>}
+					</td>
+				</tr>
+				<tr>
+					<td>Beneficiary names</td>
+					<td><obs conceptId="9626" size="50"/></td>
+				</tr>
+				<tr>
+					<td>Object {Service offered}</td>
+					<td><obs conceptId="9627" size="50"/></td>
+				</tr>
+				<tr>
+					<td>Service price {Due amount}</td>
+					<td><obs conceptId="9628" size="20"/></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+	<div class="section">
+		<div class="sectionheader">Register details</div>
+		<div class="sectionbody">
+			<table class="baseline-aligned">
+				<tr>
+					<td>Due amount </td>
+					<td><obs conceptId="9629" size="20"/> per day</td>
+				</tr>
+				<tr>
+					<td>Total price</td>
+					<td><obs conceptId="9630" size="20"/></td>
+				</tr>
+				<tr>
+					<td>Other needs</td>
+					<td><obs conceptId="9631" style="textarea" rows="2" cols="20"/></td>
+				</tr>
+				<tr>
+					<td>Observations</td>
+					<td><obs conceptId="9632" style="textarea" rows="3" cols="30"/></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="separator">
+		<submit/>
+	</div>    
+	<div class="footer">
+		<b>R.N.P &#169;</b><i> Service. Protection. Integrity</i>
+	</div>
+</div>
+	
+<!-- END - ISANGE SAFE ROOM FORM -->
+
+</htmlform>

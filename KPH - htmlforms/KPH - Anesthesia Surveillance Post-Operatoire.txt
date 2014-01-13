@@ -1,0 +1,285 @@
+<htmlform>
+	<style>		
+		body{
+			background-color: #ffffff;
+		}
+
+		.bodycontainer{
+			padding: 2px;
+			background-color: transparent;
+		}
+		.header{
+			font-style: italic;
+			font-family: Gill, Georgia, serif;
+			font-size: x-large;
+			font-weight: bold;
+			color: #02416e;
+			height: 40px;
+			width: 100%;
+			border: 2px solid #ccccff;
+			text-align: center;
+			background-color: #ebf2f7;
+			margin-bottom: 5px;
+		}
+		.container{
+			clear: both;
+			height: auto;
+			width: 100%;
+			padding: 2px;
+			background-color: transparent;
+		}
+
+		.leftsection{
+			clear: both;
+			float: left;
+			width: 50%;
+			margin-bottom: 5px;
+		}
+		.sectioninleft{
+			border-right: 2px solid #02416e;
+			background-color: #ebf2f7;
+			border-bottom: 2px solid #02416e;
+			border-left: 2px solid #02416e;
+			border-top: 2px solid #02416e;
+		}
+		.rightsection{
+			float: right;
+			width: 50%;
+			margin-bottom: 5px;
+		}
+		.sectioninright{
+			background-color: #ebf2f7;
+			border-left: none;
+			border-bottom: 2px solid #02416e;
+			border-right: 2px solid #02416e;
+			border-top: 2px solid #02416e;
+		}
+		.section{
+			margin-bottom: 5px;
+			clear: both;
+			background-color: #ebf2f7;
+			border: 2px solid #02416e;
+		}
+		.sectionheader{
+			font-style: italic;
+			font-family: Gill, Georgia, serif;
+			font-size: medium;
+			font-weight: bold;
+			height: auto;
+			width: inherit;
+			border: 2px solid #ccccff;
+			text-align: left;
+			padding: 2px;
+			background-color: #81afc1;
+		}
+		.sectionbody{
+			clear: both;
+			height: auto;
+			width: inherit;
+			background-color: transparent;
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+
+		.separator{
+			clear: both;
+			font-style: normal;
+			font-family: Gill, Georgia, serif;
+			font-size: larger;
+			font-weight: bold;
+			color: #02416e;
+			height: 30px;
+			border: 2px solid #ccccff; 
+			border-left: 2px solid #02416e;
+			border-bottom: none;
+			border-right: 2px solid #02416e;
+			border-top: 2px solid #02416e;
+			text-align: center;
+			background-color: #ebf2f7;
+		}
+
+		.footer{
+			clear: both;
+			height: 20px;
+			width: 100%;
+			border: 2px solid #ccccff;
+			text-align: center;
+			background-color: #fbfce3;
+		}
+		input[type="text"] {
+			font-style: italic;
+			font-family: Georgia;
+		}
+		input[type="submit"] {
+			font-style: italic;
+			font-family: Georgia;
+		}
+	</style>
+	
+	<div class="header">Anesthesia</div>
+	<div class="bodycontainer">
+		<div class="separator">Surveillance Post-Operatoire</div>
+
+		<div class="section">
+			<div class="sectionheader">Encounter Details</div>
+			<div class="sectionbody">
+				<table class="baseline-aligned">
+					<tr>
+						<td>Date:</td>
+						<td><encounterDate default="today"/></td>
+					</tr>
+					<tr>
+						<td>Location:</td>
+						<td><encounterLocation/></td>
+					</tr>
+					<tr>
+						<td>Provider:</td>
+						<td><encounterProvider/></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="sectionheader">Demographic Information</div>
+			<div class="sectionbody">
+				<table class="baseline-aligned">
+					<tr>
+						<td>Patient names</td>
+						<td><b><u><lookup expression="patient.personName"/></u></b><br/>
+							{<b>Id:</b><lookup expression="patient.patientIdentifier.identifier"/>;
+							<b>Sex:</b><lookup expression="patient.gender"/>;
+							<b>Age:</b><lookup expression="patient.age"/>}</td>
+					</tr>
+					<tr>
+						<td>Location</td>
+						<td><encounterLocation default="1006"/></td>
+					</tr>
+					<tr>
+						<td>Provider</td>
+						<td><encounterProvider default="currentUser"/></td>
+					</tr>
+					<tr>
+						<td>Social status</td>
+						<td><obs conceptId="7909" answerConceptIds="7961,7962,7963,7964,2416,1069" /></td>
+					</tr>
+					<tr>
+						<td>Civil status</td>
+						<td><obs conceptId="1054" answerConceptIds="3347,6139,3628,1057,1058,1059,1060,1067,3346,5555,5622"/></td>
+					</tr>
+					<tr>
+						<td>Profession</td>
+						<td><obs conceptId="1304" answerConceptIds="1307,6138,3395,3343,2445,3396,1404,1309,1107,1306,1684,1685,1686,1687,3344,1326,1682,1683,1308,3345,2446,5622,2452,1067"/></td>
+					</tr>
+					<tr>
+						<td>Function</td>
+						<td><obs conceptId="1304" answerConceptIds="1307,6138,3395,3343,2445,3396,1404,1309,1107,1306,1684,1685,1686,1687,3344,1326,1682,1683,1308,3345,2446,5622,2452,1067"/></td>
+					</tr>
+					<tr>
+						<td>Father's names</td>
+						<td><obs conceptId="6699" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Mother's names</td>
+						<td><obs conceptId="6698" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Guardian's names</td>
+						<td><obs conceptId="1824" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Guardian relationship to the victim</td>
+						<td><obs conceptId="1826" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Names of referring person/Institution</td>
+						<td><obs conceptId="6335" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Phone number</td>
+						<td><obs conceptId="2614" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Nationality</td>
+						<td><obs conceptId="7907" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Highest level of school completed</td>
+						<td><obs conceptId="1688" answerConceptIds="1107,2942,2943,2944,2945,2946,2947,1067,1107,2416"/></td>
+					</tr>
+					<tr>
+						<td>Religion</td>
+						<td><obs conceptId="7906" size="50"/></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+			
+			<!-- General Info -->
+		<div class="section">
+			<div class="sectionheader">Information Generale</div>
+			<div class="sectionbody">
+				<table class="baseline-aligned">
+					<tr>
+						<td>
+							Perfusion/Transfusion: <input type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Autres: <input type="text" />
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+			
+			<!-- SSPI (Salle de Surveillance Post_Interventionnelle) -->
+		<div class="section">
+			<div class="sectionheader">SSPI</div>
+			<div class="sectionbody">
+				<table class="baseline-aligned">
+					<tr>
+						<td>
+							Heure d'arrivée en SSPI: <input type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Time: <input type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<obs conceptId="10858" labelText="Diurese: " />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Pertes Sang: <input type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							EVA/ EVS: <input type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<obs conceptId="5087" labelText="Pouls: " />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							SaO<sub>2</sub>: <obs conceptId="5092" /> %
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="separator">
+		<submit/>
+	</div>
+</htmlform>

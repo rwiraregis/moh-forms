@@ -1,0 +1,690 @@
+<htmlform>
+
+<style>
+body {
+	background-color: #ffffff;
+}
+
+.bodycontainer {
+	padding: 2px;
+	background-color: transpardurent;
+}
+
+.header {
+	font-style: italic;
+	font-family: Gill, Georgia, serif;
+	font-size: x-large;
+	font-weight: bold;
+	color: #02416e;
+	height: 40px;
+	width: 100%;
+	border: 2px solid #ccccff;
+	text-align: center;
+	background-color: #ebf2f7;
+	margin-bottom: 5px;
+}
+
+.container {
+	clear: both;
+	height: auto;
+	width: 100%;
+	padding: 2px;
+	background-color: transparent;
+}
+
+.leftsection {
+	clear: both;
+	float: left;
+	width: 50%;
+	margin-bottom: 5px;
+}
+
+.sectioninleft {
+	border-right: 2px solid #02416e;
+	background-color: #ebf2f7;
+	border-bottom: 2px solid #02416e;
+	border-left: 2px solid #02416e;
+	border-top: 2px solid #02416e;
+}
+
+.rightsection {
+	float: right;
+	width: 50%;
+	margin-bottom: 5px;
+}
+
+.sectioninright {
+	background-color: #ebf2f7;
+	border-left: none;
+	border-bottom: 2px solid #02416e;
+	border-right: 2px solid #02416e;
+	border-top: 2px solid #02416e;
+}
+
+.section {
+	margin-bottom: 5px;
+	clear: both;
+	background-color: #ebf2f7;
+	border: 2px solid #02416e;
+}
+
+.sectionheader {
+	font-style: italic;
+	font-family: Gill, Georgia, serif;
+	font-size: medium;
+	font-weight: bold;
+	height: auto;
+	width: inherit;
+	border: 2px solid #ccccff;
+	text-align: left;
+	padding: 2px;
+	background-color: #81afc1;
+}
+
+.sectionbody {
+	clear: both;
+	height: auto;
+	width: inherit;
+	background-color: transparent;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.separator {
+	clear: both;
+	font-style: normal;
+	font-family: Gill, Georgia, serif;
+	font-size: larger;
+	font-weight: bold;
+	color: #02416e;
+	height: 30px;
+	border: 2px solid #ccccff;
+	border-left: 2px solid #02416e;
+	border-bottom: none;
+	border-right: 2px solid #02416e;
+	border-top: 2px solid #02416e;
+	text-align: center;
+	background-color: #ebf2f7;
+}
+
+.footer {
+	clear: both;
+	height: 20px;
+	width: 100%;
+	border: 2px solid #ccccff;
+	text-align: center;
+	background-color: #fbfce3;
+}
+
+input[type="text"] {
+	font-style: italic;
+	font-family: Georgia;
+}
+
+input[type="submit"] {
+	font-style: italic;
+	font-family: Georgia;
+}
+</style>
+
+<script type="text/javascript">
+	if (jQuery) {
+
+		$j(document).ready( function() {
+			$j('#1-removeEntry').remove();
+			$j('#10-addEntry').remove();
+			$j('#1-toggleContainer').show();
+
+			$j('#11-removeEntry').remove();
+			$j('#20-addEntry').remove();
+			$j('#11-toggleContainer').show();
+
+			$j('#21-removeEntry').remove();
+			$j('#30-addEntry').remove();
+			$j('#21-toggleContainer').show();
+		});
+
+		$j(document)
+				.ready(
+						function() {
+							$j('button.addEntry')
+									.live(
+											"click",
+											function() {
+												var correctedAddButtonId = parseFloat(this.id) + 1;
+												var contentAddId = "#"
+														+ correctedAddButtonId
+														+ "-toggleContainer";
+												$j(contentAddId).toggle(true);
+												$j('#' + this.id).toggle(false);
+												$j(
+														'#' + parseFloat(this.id) + '-removeEntry')
+														.toggle(false);
+												return false;
+											});
+						});
+
+		$j(document)
+				.ready(
+						function() {
+							$j('button.removeEntry')
+									.live(
+											"click",
+											function() {
+												var correctedRemoveButtonId = parseFloat(this.id) - 1;
+												var contentAddId = "#"
+														+ parseFloat(this.id)
+														+ "-toggleContainer";
+												$j(contentAddId).toggle(false);
+												$j(':input:not(:button)',
+														contentAddId).val( []);
+												$j(
+														'#' + correctedRemoveButtonId + '-addEntry')
+														.toggle(true);
+												$j(
+														'#' + correctedRemoveButtonId + '-removeEntry')
+														.toggle(true);
+
+												return false;
+											});
+
+						});
+
+		// This where we concatenate History of the illness to the Past Medical
+		$j(document)
+				.ready(
+						function() {
+							var past = "";
+							var answer = "";
+							var answer1 = '';
+							var answer2 = '';
+							var ans1, ans2, ans3, ans4, ans5, ans6, ans7, ans8, ans9, ans10;
+							ans1 = ans2 = ans3 = ans4 = ans5 = ans6 = ans7 = ans8 = ans9 = ans10 = "";
+
+							$j('button.addEntry')
+									.click(
+											function() {
+												if ($j("#w20 option:selected")) {
+													if ($j(
+															"#w20 option:selected")
+															.text() != "")
+														ans1 = $j(
+																"#w20 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w22 option:selected")) {
+													if ($j(
+															"#w22 option:selected")
+															.text() != "")
+														ans2 = $j(
+																"#w22 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w24 option:selected")) {
+													if ($j(
+															"#w24 option:selected")
+															.text() != "")
+														ans3 = $j(
+																"#w24 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w26 option:selected")) {
+													if ($j(
+															"#w26 option:selected")
+															.text() != "")
+														ans4 = $j(
+																"#w26 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w28 option:selected")) {
+													if ($j(
+															"#w28 option:selected")
+															.text() != "")
+														ans5 = $j(
+																"#w28 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w30 option:selected")) {
+													if ($j(
+															"#w30 option:selected")
+															.text() != "")
+														ans6 = $j(
+																"#w30 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w32 option:selected")) {
+													if ($j(
+															"#w32 option:selected")
+															.text() != "")
+														ans7 = $j(
+																"#w32 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w34 option:selected")) {
+													if ($j(
+															"#w34 option:selected")
+															.text() != "")
+														ans8 = $j(
+																"#w34 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w36 option:selected")) {
+													if ($j(
+															"#w36 option:selected")
+															.text() != "")
+														ans9 = $j(
+																"#w36 option:selected")
+																.text()
+																+ ", ";
+												}
+												if ($j("#w38 option:selected")) {
+													if ($j(
+															"#w38 option:selected")
+															.text() != "")
+														ans10 = $j(
+																"#w38 option:selected")
+																.text()
+																+ ", ";
+												}
+
+												answer = ans1 + ans2 + ans3
+														+ ans4 + ans5 + ans6
+														+ ans7 + ans8 + ans9
+														+ ans10;
+												$j(
+														"span#syndromic_summary textarea")
+														.val(
+																past
+																		+ "- CONS MOTIVE: "
+																		+ answer
+																		+ "\n- ILLNESS HISTORY: "
+																		+ answer2
+																		+ "\n- PAST/ANTECEDENTS: "
+																		+ answer1
+																		+ "\n- OTHER: ");
+											});
+
+							$j("span#past_medical textarea").keyup( function() {
+								answer1 = $j(this).val();
+								//past += $j("span#syndromic_summary").val();
+									$j("span#syndromic_summary textarea").val(
+											past + "- CONS MOTIVE: " + answer
+													+ "\n- ILLNESS HISTORY: "
+													+ answer2
+													+ "\n- PAST/ANTECEDENTS: "
+													+ answer1 + "\n- OTHER: ");
+								});
+
+							$j("span#history_illness textarea")
+									.keyup( function() {
+										answer2 = $j(this).val();
+										//past += $j("span#syndromic_summary").val();			
+											$j(
+													"span#syndromic_summary textarea")
+													.val(
+															past
+																	+ "- CONS MOTIVE: "
+																	+ answer
+																	+ "\n- ILLNESS HISTORY: "
+																	+ answer2
+																	+ "\n- PAST/ANTECEDENTS: "
+																	+ answer1
+																	+ "\n- OTHER: ");
+										});
+						});
+
+		$j(document).ready( function() {
+
+			// Setting the size for the autocomplete fields.
+				$j("span#presumptive input").attr("size", "60");
+				$j("span#primary_digno input").attr("size", "60");
+				$j("span#second_digno input").attr("size", "60");
+				$j("span#encDate input").attr("size", "15");
+
+				$j("input[type=radio][name=normal_1]").change(
+						function() {
+							var answer = $j(this).val();
+							if (answer == "normal") {
+								$j("span#pulmonary textarea").val("Normal");
+								$j("#pulmonary").disableSelection();
+							} else {
+								$j("span#pulmonary textarea").val(
+										"Abnormal because : ");
+								$j("#pulmonary").enableSelection();
+								$j("span#pulmonary textarea").focus();
+							}
+						});
+
+				$j("input[type=radio][name=normal_2]").change( function() {
+					var answer = $j(this).val();
+					if (answer == "normal") {
+						$j("span#cardio textarea").val("Normal");
+						$j("#cardio").disableSelection();
+					} else {
+						$j("span#cardio textarea").val("Abnormal because : ");
+						$j("#cardio").enableSelection();
+						$j("span#cardio textarea").focus();
+					}
+				});
+
+				$j("input[type=radio][name=normal_3]").change(
+						function() {
+							var answer = $j(this).val();
+							if (answer == "normal") {
+								$j("span#abdominal textarea").val("Normal");
+								$j("#abdominal").disableSelection();
+							} else {
+								$j("span#abdominal textarea").val(
+										"Abnormal because : ");
+								$j("#abdominal").enableSelection();
+								$j("span#abdominal textarea").focus();
+							}
+						});
+
+				$j("input[type=radio][name=normal_4]").change(
+						function() {
+							var answer = $j(this).val();
+							if (answer == "normal") {
+								$j("span#neurologic textarea").val("Normal");
+								$j("#neurologic").disableSelection();
+							} else {
+								$j("span#neurologic textarea").val(
+										"Abnormal because : ");
+								$j("#neurologic").enableSelection();
+								$j("span#neurologic textarea").focus();
+							}
+						});
+
+				$j("input[type=radio][name=normal_5]").change( function() {
+					var answer = $j(this).val();
+					if (answer == "normal") {
+						$j("span#musculo textarea").val("Normal");
+						$j("#musculo").disableSelection();
+					} else {
+						$j("span#musculo textarea").val("Abnormal because : ");
+						$j("#musculo").enableSelection();
+						$j("span#musculo textarea").focus();
+					}
+				});
+
+				$j("input[type=radio][name=normal_6]").change(
+						function() {
+							var answer = $j(this).val();
+							if (answer == "normal") {
+								$j("span#urogenital textarea").val("Normal");
+								$j("#urogenital").disableSelection();
+							} else {
+								$j("span#urogenital textarea").val(
+										"Abnormal because : ");
+								$j("#urogenital").enableSelection();
+								$j("span#urogenital textarea").focus();
+							}
+						});
+
+				$j("input[type=radio][name=normal_7]").change( function() {
+					var answer = $j(this).val();
+					if (answer == "normal") {
+						$j("span#skin textarea").val("Normal");
+						$j("#skin").disableSelection();
+					} else {
+						$j("span#skin textarea").val("Abnormal because : ");
+						$j("#skin").enableSelection();
+						$j("span#skin textarea").focus();
+					}
+				});
+
+				$j("input[type=radio][name=normal_8]").change(
+						function() {
+							var answer = $j(this).val();
+							if (answer == "normal") {
+								$j("span#psychomotor textarea").val("Normal");
+								$j("#psychomotor").disableSelection();
+							} else {
+								$j("span#psychomotor textarea").val(
+										"Abnormal because : ");
+								$j("#psychomotor").enableSelection();
+								$j("span#psychomotor textarea").focus();
+							}
+						});
+
+				$j("input[type=radio][name=normal_9]").change( function() {
+					var answer = $j(this).val();
+					if (answer == "normal") {
+						$j("span#other textarea").val("Normal");
+						$j("#other").disableSelection();
+					} else {
+						$j("span#other textarea").val("Abnormal because : ");
+						$j("#other").enableSelection();
+						$j("span#other textarea").focus();
+					}
+				});
+			});
+
+	}
+</script>
+
+<!-- MATERNITY ADMISSION -->
+
+<div class="header">KPH - MATERNITY ADMISSION</div>
+
+<includeIf velocityTest="$patient.gender == 'M' "> <h2>The patient is not a female to use this Maternity Form!</h2> </includeIf>
+<includeIf velocityTest="$patient.gender == 'F' ">
+
+<div class="bodycontainer">
+<div class="separator">Maternity Admission</div>
+
+<div class="section">
+<div class="sectionheader">Registration information</div>
+<div class="sectionbody">
+<table class="baseline-aligned">
+	<tr>
+		<td>Date</td>
+		<td><span id="encDate"><encounterDate default="today"
+			size="30" /></span></td>
+	</tr>
+	<tr>
+		<td>Patient names</td>
+		<td><b><u><lookup expression="patient.personName" /></u></b><br />
+		{<b>Id:</b><lookup expression="patient.patientIdentifier.identifier" />;
+		<b>Sex:</b><lookup expression="patient.gender" />; <b>Age:</b><lookup
+			expression="patient.age" />}</td>
+	</tr>
+	<tr>
+		<td>Address</td>
+		<td><lookup expression="patient.personAddress.stateProvince" />
+		<lookup expression="patient.personAddress.cityVillage" /></td>
+	</tr>
+	<tr>
+		<td>Location</td>
+		<td><encounterLocation default="1006" /></td>
+	</tr>
+	<tr>
+		<td>Provider</td>
+		<td><encounterProvider default="currentUser" /></td>
+	</tr>
+	<tr>
+		<td>Provenance /Catchment Area Population</td>
+		<td><obs conceptId="8047" answerConceptIds="8050,8051,8052" /></td>
+	</tr>
+	<tr>
+		<td>Transfered From</td>
+		<td><patient
+			field="identifierLocation" /></td>
+	</tr>
+</table>
+<hr />
+<table class="baseline-aligned">
+	<tr>
+		<td>Insurance</td>
+		<td><obs conceptId="6740" /></td>
+	</tr>
+	<tr>
+		<td>Phone number / Numero de telephone</td>
+		<td><obs conceptId="2614" size="40" /></td>
+	</tr>
+	<tr>
+		<td>Person to concact / Persone a contacter</td>
+		<td><obs conceptId="1327" size="60" /></td>
+	</tr>
+</table>
+<hr />
+<table class="baseline-aligned">
+	<tr>
+		<td><b>Vital Signs:  </b></td>
+		<td>
+		<table>
+			<tr>
+				<obsgroup groupingConceptId="1114">
+				<td><obs conceptId="5088" labelText="Temperature" /></td>
+				<td><obs conceptId="5089" labelText="Weight" /></td>
+				<td><obs conceptId="5090" labelText="Height" /></td>
+				<td><obs conceptId="5085" labelText="SBP" /></td>
+				<td><obs conceptId="5086" labelText="DBP" /></td>
+				<td><obs conceptId="5087" labelText="Pulse" /></td>
+				</obsgroup>
+			</tr>
+		</table>
+		</td>
+	</tr>
+</table>
+<table class="baseline-aligned">
+	<!-- 
+  <tr>
+		<td>Salle ?<input type="hidden" />? Chambre ?<input type="hidden" />?
+		Clinique ?<input type="hidden" />?</td>
+		<td></td>
+	</tr>
+   -->
+
+</table>
+</div>
+</div>
+
+
+<div class="section">
+<div class="sectionheader">ANAMNESE</div>
+<div class="sectionbody">
+<table class="baseline-aligned">
+	<tr>
+		<td>Pathologie gynecologique anterieure</td>
+		<td><obs conceptId="10042" /></td>
+	</tr>
+	<tr>
+		<td>Pathologie chirurgicale anterieure</td>
+		<td><obs conceptId="10043" /></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		<fieldset><legend> <b>HIV / STI status</b> </legend>
+		<table>
+			<tr>
+				<td><b>STI Screening: </b></td>
+				<td><obs conceptId="1374" style="radio"
+					answers="Positive,Negative,Not done,Not applicable" /></td>
+			</tr>
+			<tr>
+				<td><b>HIV Status: </b></td>
+				<td><obs conceptId="2169" style="radio" /></td>
+			</tr>
+		</table>
+		</fieldset>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		<fieldset><legend> <b>Grossesse / Pregnancy</b> </legend>
+		<table>
+			<thead>
+				<th>Gravidity</th>
+				<th>Parity</th>
+				<th>Abortions</th>
+				<th>Premature</th>
+				<th>Alive</th>
+				<th>Stillbirth</th>
+			</thead>
+			<tr style="align: center;">
+				<td><obs conceptId="5624" size="15" /></td>
+				<td><obs conceptId="1053" size="15" /></td>
+				<td><obs conceptId="8157" size="15" /></td>
+				<td><obs conceptId="10044" size="15" /></td>
+				<td><obs conceptId="8501" size="15" /></td>
+				<td><obs conceptId="8142" size="15" /></td>
+			</tr>
+		</table>
+		</fieldset>
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+
+<div class="section">
+<div class="sectionheader">GROSSESSE ACTUELLE</div>
+<div class="sectionbody">
+<table class="baseline-aligned">
+	<tr>
+		<td>No de la grossesse</td>
+		<td><obs conceptId="10143" /></td>
+	</tr>
+	<tr>
+		<td>Date of the last menstrual period</td>
+		<td><obs conceptId="968" /></td>
+	</tr>
+	<tr>
+		<td>A terme</td>
+		<td><obs conceptId="8177" /></td>
+	</tr>
+	<tr>
+		<td>Durée de la grossesse(En Semaines)</td>
+		<td><obs conceptId="1279" /></td>
+	</tr>
+</table>
+<hr />
+<table class="baseline-aligned">
+	<tr>
+		<td><b>Admission date and time</b></td>
+		<td><span id="encDate"><obs conceptId="10045" /></span></td>
+	</tr>
+</table>
+<hr />
+<table class="baseline-aligned">
+	<tr>
+		<td colspan="2">
+		<fieldset><legend> <b>Anamnèse actuel</b> </legend>
+		<table>
+			<tr>
+				<td>Debut de contractions</td>
+				<td><obs conceptId="10046" /></td>
+			</tr>
+			<tr>
+				<td>Poche rompue</td>
+				<td><obs conceptId="10047" style="radio" /></td>
+			</tr>
+
+		</table>
+		</fieldset>
+		<br />
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+
+<div class="separator"><submit /></div>
+<div class="footer"><b>&#169;R.N.P</b><i> Service. Protection.
+Integrity</i></div>
+</div>
+ </includeIf>
+
+<!-- END - MATERNITY ADMISSION -->
+
+</htmlform>
