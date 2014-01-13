@@ -1,0 +1,440 @@
+									
+<htmlform>
+
+	<style>
+		body{
+			background-color: #ffffff;
+		}
+
+		.bodycontainer{
+			padding: 2px;
+			background-color: transparent;
+		}
+		.header{
+			font-style: italic;
+			font-family: Gill, Georgia, serif;
+			font-size: x-large;
+			font-weight: bold;
+			color: #02416e;
+			height: 40px;
+			width: 100%;
+			border: 2px solid #ccccff;
+			text-align: center;
+			background-color: #ebf2f7;
+			margin-bottom: 5px;
+		}
+		.container{
+			clear: both;
+			height: auto;
+			width: 100%;
+			padding: 2px;
+			background-color: transparent;
+		}
+
+		.leftsection{
+			clear: both;
+			float: left;
+			width: 50%;
+			margin-bottom: 5px;
+		}
+		.sectioninleft{
+			border-right: 2px solid #02416e;
+			background-color: #ebf2f7;
+			border-bottom: 2px solid #02416e;
+			border-left: 2px solid #02416e;
+			border-top: 2px solid #02416e;
+		}
+		.rightsection{
+			float: right;
+			width: 50%;
+			margin-bottom: 5px;
+		}
+		.sectioninright{
+			background-color: #ebf2f7;
+			border-left: none;
+			border-bottom: 2px solid #02416e;
+			border-right: 2px solid #02416e;
+			border-top: 2px solid #02416e;
+		}
+		.section{
+			margin-bottom: 5px;
+			clear: both;
+			background-color: #ebf2f7;
+			border: 2px solid #02416e;
+		}
+		.sectionheader{
+			font-style: italic;
+			font-family: Gill, Georgia, serif;
+			font-size: medium;
+			font-weight: bold;
+			height: auto;
+			width: inherit;
+			border: 2px solid #ccccff;
+			text-align: left;
+			padding: 2px;
+			background-color: #81afc1;
+		}
+		.sectionbody{
+			clear: both;
+			height: auto;
+			width: inherit;
+			background-color: transparent;
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+
+		.separator{
+			clear: both;
+			font-style: normal;
+			font-family: Gill, Georgia, serif;
+			font-size: larger;
+			font-weight: bold;
+			color: #02416e;
+			height: 30px;
+			border: 2px solid #ccccff; 
+			border-left: 2px solid #02416e;
+			border-bottom: none;
+			border-right: 2px solid #02416e;
+			border-top: 2px solid #02416e;
+			text-align: center;
+			background-color: #ebf2f7;
+		}
+
+		.footer{
+			clear: both;
+			height: 20px;
+			width: 100%;
+			border: 2px solid #ccccff;
+			text-align: center;
+			background-color: #fbfce3;
+		}
+		input[type="text"] {
+			font-style: italic;
+			font-family: Georgia;
+		}
+		input[type="submit"] {
+			font-style: italic;
+			font-family: Georgia;
+		}
+	</style>
+
+	<div class="header">Anesthesia </div>
+	<div class="bodycontainer">
+		<div class="separator">Evaluation Pre-Operatoire</div>
+		<div class="section">
+			<div class="sectionheader">Patient information</div>
+			<div class="sectionbody">
+				<table class="baseline-aligned">
+					<tr>
+						<td>Date:</td>
+						<td><encounterDate default="today"/></td>
+					</tr>
+					<tr>
+						<td>Location:</td>
+						<td><encounterLocation/></td>
+					</tr>
+					<tr>
+						<td>Provider:</td>
+						<td><encounterProvider/></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	
+		<div class="section">
+			<div class="sectionheader">Demographic Information</div>
+			<div class="sectionbody">	
+				<table class="baseline-aligned">
+					<tr>
+						<td>Patient names</td>
+						<td><b><u><lookup expression="patient.personName"/></u></b><br/>
+							{<b>Id:</b><lookup expression="patient.patientIdentifier.identifier"/>;
+							<b>Sex:</b><lookup expression="patient.gender"/>;
+							<b>Age:</b><lookup expression="patient.age"/>}</td>
+					</tr>
+					<tr>
+						<td>Location</td>
+						<td><encounterLocation default="1006"/></td>
+					</tr>
+					<tr>
+						<td>Provider</td>
+						<td><encounterProvider default="currentUser"/></td>
+					</tr>
+					<tr>
+						<td>Social status</td>
+						<td><obs conceptId="7909" answerConceptIds="7961,7962,7963,7964,2416,1069" /></td>
+					</tr>
+					<tr>
+						<td>Civil status</td>
+						<td><obs conceptId="1054" answerConceptIds="3347,6139,3628,1057,1058,1059,1060,1067,3346,5555,5622"/></td>
+					</tr>
+					<tr>
+						<td>Profession</td>
+						<td><obs conceptId="1304" answerConceptIds="1307,6138,3395,3343,2445,3396,1404,1309,1107,1306,1684,1685,1686,1687,3344,1326,1682,1683,1308,3345,2446,5622,2452,1067"/></td>
+					</tr>
+					<tr>
+						<td>Function</td>
+						<td><obs conceptId="1304" answerConceptIds="1307,6138,3395,3343,2445,3396,1404,1309,1107,1306,1684,1685,1686,1687,3344,1326,1682,1683,1308,3345,2446,5622,2452,1067"/></td>
+					</tr>
+					<tr>
+						<td>Father's names</td>
+						<td><obs conceptId="6699" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Mother's names</td>
+						<td><obs conceptId="6698" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Guardian's names</td>
+						<td><obs conceptId="1824" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Guardian relationship to the victim</td>
+						<td><obs conceptId="1826" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Names of referring person/Institution</td>
+						<td><obs conceptId="6335" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Phone number</td>
+						<td><obs conceptId="2614" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Nationality</td>
+						<td><obs conceptId="7907" size="50"/></td>
+					</tr>
+					<tr>
+						<td>Highest level of school completed</td>
+						<td><obs conceptId="1688" answerConceptIds="1107,2942,2943,2944,2945,2946,2947,1067,1107,2416"/></td>
+					</tr>
+					<tr>
+						<td>Religion</td>
+						<td><obs conceptId="7906" size="50"/></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	
+		<div class="section">
+			<div class="sectionheader">Evaluation Préopératoire</div>
+			<div class="sectionbody">
+			<table class="baseline-aligned">
+				<tr>
+					<td>
+						<fieldset><legend><b>Information Générale</b></legend>
+							<table>
+								<tr>
+									<td>Departement Operateur: <obs conceptId="6702" /></td>
+								</tr>
+								<tr>
+									<td>Date Prevue de l'operation: <obs conceptId="3179" /></td>
+								</tr>
+								<tr>
+									<td>Type d'operation/Intervention: <obs conceptId="10834" /></td>
+								</tr>
+							</table>
+						</fieldset>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<fieldset style="width: 100%">
+							<legend><b>Examens Cliniques</b></legend>
+							<table>
+								<tr>
+									<td>
+										<table>
+											<tr>
+												<td>
+													<obs conceptId="5089" labelText="Poids"/>
+													<obs conceptId="5090" labelText="Taille"/>
+												</td>
+											</tr>
+											<tr>
+												<td style="text-align: center;">
+													Etat General: <obs conceptId="2140"/>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<obs conceptId="10843" labelText="Mallampati" />
+												</td>
+											</tr>
+										</table>
+									</td>
+									<td>
+										<fieldset>
+											<legend><b>Examen cardiaque</b></legend>
+											<table>
+												<tr>
+													<td></td>
+													<td></td>
+													<td>SBP</td>
+													<td>DBP</td>
+												</tr>
+												<tr>
+													<td>Auscultation Cardiaque: <obs conceptId="1124" /></td>
+													<td>Pouls: <obs conceptId="5087"/> / min TA: </td>
+													<td><obs conceptId="5085" />/</td>
+													<td><obs conceptId="5086" /></td>
+												</tr>
+												<tr>
+													<td colspan="4">
+														Auscultation Pulmonaire: <obs conceptId="3238" />
+													</td>
+												</tr>
+											</table>
+										</fieldset>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<fieldset>
+											<legend><b>Intubation</b></legend>
+											<table>
+												<tr>
+													<td>Distance tyro-mentoniere: </td><td><obs conceptId="10835"/></td>
+												</tr>
+												<tr>
+													<td>Ouverture de la bouche: </td><td><obs conceptId="10836"/></td>
+												</tr>
+												<tr>
+													<td>Colonne Cervicale: </td><td><obs conceptId="10849"/></td>
+												</tr>
+												<tr>
+													<td>Dentition: </td><td><obs conceptId="10845"/></td>
+												</tr>
+											</table>
+										</fieldset>
+									</td>
+								</tr>
+							</table>							
+						</fieldset>
+					</td>
+				</tr>
+				
+				<!-- Examens complementaires -->
+				
+				<tr>
+					<td>
+						<fieldset>
+							<legend><b>Examens Cliniques Complementaires</b></legend>
+							<table>
+								<tr>
+									<td>ECG </td><td>:<obs conceptId="10166"/></td><td> Echo Coeur</td><td>:<obs conceptId="1364"/></td>
+									<td>RX Thorax </td><td>:<input type="text" /></td><td> Autres </td><td>:<obs conceptId="3233"/></td>
+								</tr>							
+							</table>
+						</fieldset>
+					</td>
+				</tr>
+				
+				<!-- Antecedents Medicaux -->
+				<tr>
+					<td>
+						<fieldset>
+							<legend><b>Antecedents Medicaux</b></legend>
+							<table>
+								<tr>
+									<td><obs conceptId="10166" labelText="Cardiovasculaire" /></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="10166" labelText="Pulmonaires" /></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="10166" labelText="Neurologiques" /></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="10166" labelText="Gastoentero" /></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="10166" labelText="Endocrinologique" /></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="10166" labelText="Allergies" /></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="10166" labelText="Toxicologie" /></td>
+								</tr>
+								<tr>
+									<td><obs conceptId="10166" labelText="Nephrologie" /></td>
+								</tr>
+								<tr>
+									<td>
+										<obs conceptId="3065" labelText="Infectieuses" answerConceptId="1169" answerLabel="HIV"/>
+										<obs conceptId="3065" labelText="" answerConceptId="27" answerLabel="Hepatite B"/>
+										<obs conceptId="3065" labelText="" answerConceptId="28" answerLabel="Hepatite C"/>
+									</td>
+								</tr>
+								<tr>
+									<td><obs conceptId="1364" labelText="Troubles de la coagulation" /></td>
+								</tr>
+								<tr>
+									<td><input type="text" /></td>
+								</tr>
+							</table>
+							<table>
+								<tr>									
+									<td>Antecedents Chirurgicaux</td><td>: <obs conceptId="10868" /></td>
+									<td>Antecedents d'anesthesie</td><td>: <obs conceptId="1364" /></td>
+									<td>Resume Medical</td><td>: <obs conceptId="2880" /></td>
+									<td>Classe ASA</td><td>: <select><option>I</option><option>II</option><option>III</option><option>IV</option></select></td>
+								</tr>							
+							</table>
+						</fieldset>
+					</td>
+				</tr>
+				
+				<!-- Type d'anesthesie envisagee -->
+				<tr>
+					<td>
+						<fieldset>
+							<legend><b>Envisagee</b></legend>
+							<table>
+								<tr>
+									<td>Type d'anesthesie</td><td>: <obs conceptId="7949"/></td>
+								</tr>							
+								<tr>
+									<td>Analgesie Postoperatoire</td><td>: 
+										<select>
+											<option>Classique IV/ IM po/ SC</option>
+											<option>Opioides IT</option>
+											<option>Bloc</option>
+											<option>Peridurale</option>										
+											<option>PCA</option>
+											<option>Autre (provid free text)</option>
+										</select>
+									</td>
+								</tr>							
+								<tr>
+									<td>Modalites de surveillance postoperatoire</td><td>: 
+										<select>
+											<option>SSPI puis secteur d'hospitalisation</option>
+											<option>SSPI puis retour a domicile (Ambulatoire)</option>
+											<option>ICU</option>
+										</select>
+									</td>
+								</tr>							
+								<tr>
+									<td>Consentement</td><td>: 
+										<select>
+											<option>Oui</option>
+											<option>Non</option>
+										</select>
+									</td>
+								</tr>						
+							</table>
+						</fieldset>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="separator">
+		<submit/>
+	</div>
+
+</htmlform>
